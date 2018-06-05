@@ -27,9 +27,9 @@ export class AppComponent implements OnInit{
         name: "team3"
       }
     ]));
-    localStorage.setItem("players", []);
-    localStorage.setItem("teamCounter", 3);
-    localStorage.setItem("playerCounter", 3);
+    localStorage.setItem("players", '[]');
+    localStorage.setItem("teamCounter", '3');
+    localStorage.setItem("playerCounter", '3');
   }
 
 }

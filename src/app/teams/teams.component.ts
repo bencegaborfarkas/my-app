@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Select } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-teams',
@@ -49,7 +51,7 @@ export class TeamsComponent implements OnInit {
     console.log(tmp);*/
 
     // close modal
-    $('#updateTeamModal').modal('hide');
+    $.element('#updateTeamModal').modal('hide');
 
   };
 
@@ -57,7 +59,7 @@ export class TeamsComponent implements OnInit {
 
     if(confirm("Are you sure to delete "+ selectedTeam.name)) {
       // find idx
-      var idx = this.teams.findIndex((team) => {
+      let idx = this.teams.findIndex((team) => {
         return team.id === selectedTeam.id;
       });
 
