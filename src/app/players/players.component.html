@@ -20,7 +20,7 @@
           <td>{{ player.name }}</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatePlayerModal">
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatePlayerModal" (click) = "selectPlayer(player)">
                 Update
               </button>
               <button type="button" class="btn btn-danger" (click)="deletePlayer(player)">
@@ -51,7 +51,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="playerNameInput">Player name</label>
+            <label for="playerNameInput">Players name</label>
             <input type="text" class="form-control" id="playerNameInput" aria-describedby="playerNameInput" placeholder="Enter player name" #playerName>
           </div>
           <div class="form-group">
@@ -72,4 +72,35 @@
 
 
 
-
+<div class="modal fade" id="updatePlayerModal" tabindex="-1" role="dialog" aria-labelledby="updatePlayerModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aaaa">Update player: {{ this.selectedPlayer?.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <form>
+            <div class="form-group">
+              <label for="playerNameInput">Players new name</label>
+              <input type="text" class="form-control" id="playerNameInput" name="playerNameInput" aria-describedby="playerNameInput" placeholder="Enter a new player name" #playerName>
+            </div>
+            <div class="form-group">
+              <label for="selectTeam">Select team(s) for the player</label>
+              <select multiple class="form-control" id="selectTeam" name="selectTeam" [(ngModel)]="this.selectedTeams" #selectTeam>
+                <option *ngFor="let team of this.teams" [ngValue]="team">{{team.name}}</option>
+              </select>
+            </div>
+          </form>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updatePlayer(playerName.value)">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
