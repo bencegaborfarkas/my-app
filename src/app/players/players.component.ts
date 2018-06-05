@@ -16,15 +16,18 @@ export class PlayersComponent implements OnInit {
   players: any[];
   selectedTeams: any[];
   selectedPlayer: any;
+  playerGender: string;
 
-  createPlayer = function (playerName: string) {
+  createPlayer = function (playerName: string, age: number) {
 
     // add new player to array
     let playerId: number;
     playerId = this.playerCounter;
     this.players.push({
       id: playerId,
-      name: playerName
+      name: playerName,
+      age: age,
+      gender: this.playerGender
     });
 
     // update team(s) with new player
@@ -63,6 +66,9 @@ export class PlayersComponent implements OnInit {
     // select player
     this.selectedPlayer = selectedPlayer;
 
+    // copy gender
+    this.playerGender = selectedPlayer.gender;
+
     // empty selected teams array
     this.selectedTeams.splice(0, this.selectedTeams.length);
 
@@ -82,12 +88,16 @@ export class PlayersComponent implements OnInit {
   };
 
 
-  updatePlayer = function (playerName: string) {
+  updatePlayer = function (playerName: string, playerAge: number) {
 
     if (confirm('Are you sure to update ' + this.selectedPlayer.name)) {
 
       // update players attributes
       this.selectedPlayer.name = playerName;
+      this.selectedPlayer.age = playerAge;
+      this.selectedPlayer.gender = this.playerGender;
+
+
 
       // update team assignments
       let playerId: number;

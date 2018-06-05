@@ -1,5 +1,10 @@
 <div class="container">
   <div class="row">
+    <div class="col">
+      <h1 class="display-4">Players</h1>
+    </div>
+  </div>
+  <div class="row">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPlayerModal">
       Create
     </button>
@@ -10,14 +15,18 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Player name</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Gender</th>
           <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let player of this.players">
-          <td>index</td>
+        <tr *ngFor="let player of this.players; let i = index">
+          <td>{{ i+1 }}</td>
           <td>{{ player.name }}</td>
+          <td>{{ player.age }}</td>
+          <td>{{ player.gender }}</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatePlayerModal"
@@ -50,9 +59,25 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="playerNameInput">Players name</label>
-            <input type="text" class="form-control" id="playerNameInput" aria-describedby="playerNameInput"
+            <label for="playerNameInput">Name</label>
+            <input type="text" class="form-control" id="playerNameInput" aria-describedby="playerNameInput" required
                    placeholder="Enter player name" #playerNameInput>
+          </div>
+          <div class="form-group">
+            <label for="playerAgeInput">Age</label>
+            <input type="number" min="1" max="99" step="1" class="form-control" id="playerAgeInput"  placeholder="Enter player age" #playerAgeInput required>
+          </div>
+          <div class="form-group">
+            <label >Gender</label>
+            <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Male" #inlineRadio1 [(ngModel)]="this.playerGender" required>
+              <label class="form-check-label" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female" #inlineRadio2 [(ngModel)]="this.playerGender" required>
+              <label class="form-check-label" for="inlineRadio2">Female</label>
+            </div>
           </div>
           <div class="form-group">
             <label for="selectTeam">Select team(s) for the player</label>
@@ -66,7 +91,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="createPlayer(playerNameInput.value)">Create
+                (click)="createPlayer(playerNameInput.value, playerAgeInput.value)">Create
         </button>
       </div>
     </div>
@@ -93,6 +118,23 @@
                      aria-describedby="playerNameInput" placeholder="Enter a new player name" #updatePlayerNameInput>
             </div>
             <div class="form-group">
+              <label for="playerAgeInput">Age</label>
+              <input type="number" min="1" max="99" step="1" class="form-control" id="playerAgeInput"  placeholder="Enter player age" #updatePlayerAgeInput required>
+            </div>
+            <div class="form-group">
+              <label >Gender</label>
+              <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Male" #updateInlineRadio1 [(ngModel)]="this.playerGender" required>
+                <label class="form-check-label" for="inlineRadio1">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female" #updateInlineRadio2 [(ngModel)]="this.playerGender" required>
+                <label class="form-check-label" for="inlineRadio2">Female</label>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="selectTeam">Select team(s) for the player</label>
               <select multiple class="form-control" id="selectTeam" name="selectTeam" [(ngModel)]="this.selectedTeams"
                       #selectTeam>
@@ -105,7 +147,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="updatePlayer(updatePlayerNameInput.value)">Update
+                (click)="updatePlayer(updatePlayerNameInput.value, updatePlayerAgeInput.value)">Update
         </button>
       </div>
     </div>
