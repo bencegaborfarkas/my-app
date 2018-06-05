@@ -44,8 +44,8 @@ export class AppComponent implements OnInit{
         name: "player3"
       }
     ]));
-    localStorage.setItem("teamCounter", '3');
-    localStorage.setItem("playerCounter", '3');
+    localStorage.setItem("teamCounter", '4');
+    localStorage.setItem("playerCounter", '4');
     console.log("APP COMPONENT");
   }
 

@@ -8,18 +8,20 @@ import { FormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
 import { SummaryComponent } from './summary/summary.component';
+import { PlayersComponent } from './players/players.component';
 
 const appRoutes: Routes = [
   { path: 'summary', component: SummaryComponent },
-  { path: 'teams', component: TeamsComponent }/*,
-  { path: 'players' component: PlayerComponent }*/
+  { path: 'teams', component: TeamsComponent },
+  { path: 'players', component: PlayersComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamsComponent,
-    SummaryComponent
+    SummaryComponent,
+    PlayersComponent
   ],
   imports: [
     RouterModule.forRoot(

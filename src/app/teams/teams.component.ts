@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-declare var jquery:any;
-declare var $ :any;
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-teams',
@@ -9,6 +9,7 @@ declare var $ :any;
 })
 export class TeamsComponent implements OnInit {
 
+  teamCounter: number;
   teams: any[];
   selectedTeam: any;
 
@@ -16,7 +17,9 @@ export class TeamsComponent implements OnInit {
 
     // add new team to array
     this.teams.push({
-      name: teamName
+      id: this.teamCounter,
+      name: teamName,
+      playerIds: []
     });
 
     // remove teams from localstorage
@@ -25,12 +28,14 @@ export class TeamsComponent implements OnInit {
     // add updated teams to localstorage
     localStorage.setItem('teams', JSON.stringify(this.teams));
 
-    // test
-    /* let tmp = JSON.parse(localStorage.getItem('teams'));
-    console.log(tmp);*/
+    // increment team counter
+    this.teamCounter++;
 
-    // close modal
-    $('#createTeamModal').modal('hide');
+    // remove teamCounter from localstorage
+    localStorage.removeItem('teamCounter');
+
+    // add updated teamCounter to localstorage
+    localStorage.setItem('teamCounter', JSON.stringify(this.teamCounter));
 
   };
 
@@ -50,16 +55,13 @@ export class TeamsComponent implements OnInit {
     /* let tmp = JSON.parse(localStorage.getItem('teams'));
     console.log(tmp);*/
 
-    // close modal
-    $.element('#updateTeamModal').modal('hide');
-
   };
 
   deleteTeam = function(selectedTeam: any) {
 
-    if(confirm("Are you sure to delete "+ selectedTeam.name)) {
+    if (confirm('Are you sure to delete ' + selectedTeam.name)) {
       // find idx
-      let idx = this.teams.findIndex((team) => {
+      const idx = this.teams.findIndex((team) => {
         return team.id === selectedTeam.id;
       });
 
@@ -82,10 +84,10 @@ export class TeamsComponent implements OnInit {
 
   ngOnInit() {
 
+    this.teamCounter = JSON.parse(localStorage.getItem('teamCounter'));
     this.teams = JSON.parse(localStorage.getItem('teams'));
-    console.log(this.teams);
 
-    console.log("TEAMS COMPONENT");
+    console.log('TEAMS COMPONENT');
 
   }
 

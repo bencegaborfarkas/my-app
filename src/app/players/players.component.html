@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPlayerModal">
+      Create
+    </button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Player name</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let player of this.players">
+          <td>index</td>
+          <td>{{ player.name }}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatePlayerModal">
+                Update
+              </button>
+              <button type="button" class="btn btn-danger" (click)="deletePlayer(player)">
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="createPlayerModal" tabindex="-1" role="dialog" aria-labelledby="createPlayerModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aaa">Create team</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="playerNameInput">Player name</label>
+            <input type="text" class="form-control" id="playerNameInput" aria-describedby="playerNameInput" placeholder="Enter player name" #playerName>
+          </div>
+          <div class="form-group">
+            <label for="selectTeam">Select team(s) for the player</label>
+             <select multiple class="form-control" id="selectTeam" name="selectTeam" [(ngModel)]="this.selectedTeams" #selectTeam>
+              <option *ngFor="let team of this.teams" [ngValue]="team">{{team.name}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createPlayer(playerName.value)">Create</button>
+      </div>
+    </div>
+  </div>
+</div>

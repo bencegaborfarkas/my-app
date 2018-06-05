@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createTeamModal">
       Create
     </button>
   </div>
@@ -11,7 +11,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Team name</th>
-          <th scope="col">Action</th>
+          <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createTeamModal">Create team</h5>
+        <h5 class="modal-title" id="qweqwe">Create team</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -53,13 +53,13 @@
         <form>
           <div class="form-group">
             <label for="teamNameInput">Team name</label>
-            <input type="text" class="form-control" id="teamNameInput" aria-describedby="teamNameInput" placeholder="Enter team name" #teamName>
+            <input type="text" class="form-control" id="teamNameInput" aria-describedby="teamNameInput" placeholder="Enter team name" #teamNameInput>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="createTeam(teamName.value)">Create</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createTeam(teamNameInput.value)">Create</button>
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updateTeam(this.selectedTeam, teamName.value)">Update</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTeam(this.selectedTeam, teamName.value)">Update</button>
       </div>
     </div>
   </div>
