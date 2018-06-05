@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Team name</th>
+          <th scope="col">Number of players</th>
+          <th scope="col">View players</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let team of this.summary">
+          <td>index</td>
+          <td>{{ team.name }}</td>
+          <td>{{ team.playerIds.length }}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPlayersModal" (click)="selectTeam(team)">
+                View
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="viewPlayersModal" tabindex="-1" role="dialog" aria-labelledby="viewPlayersModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="qweqwe">Players of {{ this.selectedTeam?.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Player name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let player of this.selectedTeam?.players">
+            <td>index</td>
+            <td>{{ player.name }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

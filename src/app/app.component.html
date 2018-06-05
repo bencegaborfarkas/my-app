@@ -6,15 +6,23 @@
 </div>
 
 <div style="text-align:center">
-  <h1>
 
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Team management</a>
-      <a class="dropdown-item active" href="#"></a>
-      <a class="dropdown-item" href="#">Another link</a>
-    </div>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="summary">Summary</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="teams">Teams</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="players">Players</a>
+    </li>
+  </ul>
+
+  <br>
+  <hr>
 
 
-    <app-teams></app-teams>
-  </h1>
+  <router-outlet></router-outlet>
+
 </div>

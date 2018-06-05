@@ -85,6 +85,8 @@ export class TeamsComponent implements OnInit {
     this.teams = JSON.parse(localStorage.getItem('teams'));
     console.log(this.teams);
 
+    console.log("TEAMS COMPONENT");
+
   }
 
 }

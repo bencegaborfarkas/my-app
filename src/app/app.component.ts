@@ -16,20 +16,37 @@ export class AppComponent implements OnInit{
     localStorage.setItem("teams", JSON.stringify([
       {
         id: "1",
-        name: "team1"
+        name: "team1",
+        playerIds: [1, 2, 3]
       },
       {
         id: "2",
-        name: "team2"
+        name: "team2",
+        playerIds: [1, 3]
       },
       {
         id: "3",
-        name: "team3"
+        name: "team3",
+        playerIds: []
       }
     ]));
-    localStorage.setItem("players", '[]');
+    localStorage.setItem("players", JSON.stringify([
+      {
+        id: "1",
+        name: "player1"
+      },
+      {
+        id: "2",
+        name: "player2"
+      },
+      {
+        id: "3",
+        name: "player3"
+      }
+    ]));
     localStorage.setItem("teamCounter", '3');
     localStorage.setItem("playerCounter", '3');
+    console.log("APP COMPONENT");
   }
 
 }
