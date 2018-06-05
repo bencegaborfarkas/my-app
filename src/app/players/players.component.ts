@@ -18,7 +18,11 @@ export class PlayersComponent implements OnInit {
   selectedPlayer: any;
   playerGender: string;
 
-  createPlayer = function (playerName: string, age: number) {
+  constructor() {
+    this.selectedTeams = [];
+  }
+
+  createPlayer (playerName: string, age: number) {
 
     // add new player to array
     let playerId: number;
@@ -59,9 +63,9 @@ export class PlayersComponent implements OnInit {
     // empty teams array
     this.selectedTeams.splice(0, this.selectedTeams.length);
 
-  };
+  }
 
-  selectPlayer = function (selectedPlayer: any) {
+  selectPlayer (selectedPlayer: any) {
 
     // select player
     this.selectedPlayer = selectedPlayer;
@@ -85,10 +89,10 @@ export class PlayersComponent implements OnInit {
     });
     */
 
-  };
+  }
 
 
-  updatePlayer = function (playerName: string, playerAge: number) {
+  updatePlayer (playerName: string, playerAge: number) {
 
     if (confirm('Are you sure to update ' + this.selectedPlayer.name)) {
 
@@ -137,10 +141,10 @@ export class PlayersComponent implements OnInit {
 
     }
 
-  };
+  }
 
 
-  deletePlayer = function (selectedPlayer: any) {
+  deletePlayer (selectedPlayer: any) {
 
     if (confirm('Are you sure to delete ' + selectedPlayer.name)) {
 
@@ -179,14 +183,11 @@ export class PlayersComponent implements OnInit {
       localStorage.setItem('teams', JSON.stringify(this.teams));
     }
 
-  };
-
-  constructor() {
-    this.selectedTeams = [];
   }
 
-  ngOnInit() {
 
+
+  ngOnInit() {
     this.teams = JSON.parse(localStorage.getItem('teams'));
     this.players = JSON.parse(localStorage.getItem('players'));
     this.playerCounter = parseInt(localStorage.getItem('playerCounter'), 10);

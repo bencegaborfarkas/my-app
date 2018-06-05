@@ -14,8 +14,13 @@ export class TeamsComponent implements OnInit {
   teams: any[];
   selectedTeam: any;
 
+  constructor() {
+    this.teamCounter = parseInt(localStorage.getItem('teamCounter'), 10);
+    this.teams = JSON.parse(localStorage.getItem('teams'));
+  }
 
-  createTeam = function (teamName: string) {
+
+  createTeam (teamName: string) {
 
     // add new team to array
     this.teams.push({
@@ -39,16 +44,16 @@ export class TeamsComponent implements OnInit {
     // add updated teamCounter to localstorage
     localStorage.setItem('teamCounter', this.teamCounter.toString());
 
-  };
+  }
 
-  selectTeam = function (selectedTeam: any) {
+  selectTeam (selectedTeam: any) {
 
 
     this.selectedTeam = selectedTeam;
 
-  };
+  }
 
-  updateTeam = function (teamName: string) {
+  updateTeam (teamName: string) {
 
     if (confirm('Are you sure to update ' + this.selectedTeam.name)) {
 
@@ -64,9 +69,9 @@ export class TeamsComponent implements OnInit {
     }
 
 
-  };
+  }
 
-  deleteTeam = function (selectedTeam: any) {
+  deleteTeam (selectedTeam: any) {
 
     if (confirm('Are you sure to delete ' + selectedTeam.name)) {
       // find idx
@@ -85,16 +90,10 @@ export class TeamsComponent implements OnInit {
       localStorage.setItem('teams', JSON.stringify(this.teams));
     }
 
-  };
-
-  constructor() {
   }
 
-  ngOnInit() {
 
-    this.teamCounter = parseInt(localStorage.getItem('teamCounter'), 10);
-    this.teams = JSON.parse(localStorage.getItem('teams'));
 
-  }
+  ngOnInit() {}
 
 }

@@ -131,7 +131,8 @@ export class D3Component implements OnInit {
       .attr('height', (d) => {
         // the bar's height should align it with the base of the chart (y=0)
         return this.height - this.tempScale(d.temp);
-      });
+      })
+      .style('fill', 'rgb(15,110,168)');
 
   }
 
@@ -177,6 +178,30 @@ export class D3Component implements OnInit {
 
     // redraw the bars
     this.reDraw();
+
+  }
+
+  random() {
+
+    // redraw the bars
+    this.bars
+      .transition()
+      .duration(2500)
+      .attr('y', (d) => {
+        return Math.random() * (99 - 1) + 1;
+      })
+      .attr('height', (d) => {
+        return Math.random() * (99 - 1) + 1;
+      })
+      .style('fill', (d) => {
+        return 'rgb(' +
+          Math.random() * (255 - 1) + 1 +
+          ',' +
+          Math.random() * (255 - 1) + 1 +
+          ',' +
+          Math.random() * (255 - 1) + 1 +
+          ')';
+      });
 
   }
 

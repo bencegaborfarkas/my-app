@@ -13,18 +13,6 @@ export class SummaryComponent implements OnInit {
   selectedTeam: any;
 
   constructor() {
-  }
-
-
-  selectTeam = function (selectedTeam: any) {
-
-    this.selectedTeam = selectedTeam;
-
-  };
-
-
-  ngOnInit() {
-
     this.teams = JSON.parse(localStorage.getItem('teams'));
     this.players = JSON.parse(localStorage.getItem('players'));
 
@@ -39,7 +27,16 @@ export class SummaryComponent implements OnInit {
 
     });
     this.summary = JSON.parse(JSON.stringify(this.teams));
+  }
+
+
+  selectTeam (selectedTeam: any) {
+
+    this.selectedTeam = selectedTeam;
 
   }
+
+
+  ngOnInit() {}
 
 }
