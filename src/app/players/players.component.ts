@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
 declare var jquery: any;
 declare var $: any;
 
@@ -16,11 +17,9 @@ export class PlayersComponent implements OnInit {
   selectedTeams: any[];
   selectedPlayer: any;
 
-  createPlayer = function(playerName: string) {
+  createPlayer = function (playerName: string) {
 
-    console.log(playerName);
-
-     // add new player to array
+    // add new player to array
     let playerId: number;
     playerId = this.playerCounter;
     this.players.push({
@@ -52,16 +51,14 @@ export class PlayersComponent implements OnInit {
     localStorage.removeItem('playerCounter');
 
     // add updated playerCounter to localstorage
-    localStorage.setItem('playerCounter', JSON.stringify(this.playerCounter));
+    localStorage.setItem('playerCounter', this.playerCounter.toString());
 
     // empty teams array
     this.selectedTeams.splice(0, this.selectedTeams.length);
 
   };
 
-  selectPlayer = function(selectedPlayer: any) {
-
-    console.log(this.teams);
+  selectPlayer = function (selectedPlayer: any) {
 
     // select player
     this.selectedPlayer = selectedPlayer;
@@ -85,7 +82,7 @@ export class PlayersComponent implements OnInit {
   };
 
 
-  updatePlayer = function(playerName: string) {
+  updatePlayer = function (playerName: string) {
 
     if (confirm('Are you sure to update ' + this.selectedPlayer.name)) {
 
@@ -133,8 +130,7 @@ export class PlayersComponent implements OnInit {
   };
 
 
-
-  deletePlayer = function(selectedPlayer: any) {
+  deletePlayer = function (selectedPlayer: any) {
 
     if (confirm('Are you sure to delete ' + selectedPlayer.name)) {
 
@@ -146,7 +142,7 @@ export class PlayersComponent implements OnInit {
         // if player is assigned to team, then delete
         let index: number;
         index = team.playerIds.indexOf(playerId);
-        if (index > -1){
+        if (index > -1) {
           team.playerIds.splice(index, 1);
         }
 
@@ -183,7 +179,7 @@ export class PlayersComponent implements OnInit {
 
     this.teams = JSON.parse(localStorage.getItem('teams'));
     this.players = JSON.parse(localStorage.getItem('players'));
-    this.playerCounter = JSON.parse(localStorage.getItem('playerCounter'));
+    this.playerCounter = parseInt(localStorage.getItem('playerCounter'), 10);
   }
 
 }

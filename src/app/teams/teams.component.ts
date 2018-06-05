@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
 declare var jquery: any;
 declare var $: any;
 
@@ -14,7 +15,7 @@ export class TeamsComponent implements OnInit {
   selectedTeam: any;
 
 
-  createTeam = function(teamName: string) {
+  createTeam = function (teamName: string) {
 
     // add new team to array
     this.teams.push({
@@ -36,19 +37,18 @@ export class TeamsComponent implements OnInit {
     localStorage.removeItem('teamCounter');
 
     // add updated teamCounter to localstorage
-    localStorage.setItem('teamCounter', JSON.stringify(this.teamCounter));
+    localStorage.setItem('teamCounter', this.teamCounter.toString());
 
   };
 
-  selectTeam = function(selectedTeam: any){
+  selectTeam = function (selectedTeam: any) {
 
 
     this.selectedTeam = selectedTeam;
-    console.log(this.selectedTeam);
 
   };
 
-  updateTeam = function(teamName: string) {
+  updateTeam = function (teamName: string) {
 
     if (confirm('Are you sure to update ' + this.selectedTeam.name)) {
 
@@ -66,7 +66,7 @@ export class TeamsComponent implements OnInit {
 
   };
 
-  deleteTeam = function(selectedTeam: any) {
+  deleteTeam = function (selectedTeam: any) {
 
     if (confirm('Are you sure to delete ' + selectedTeam.name)) {
       // find idx
@@ -74,7 +74,6 @@ export class TeamsComponent implements OnInit {
         return team.id === selectedTeam.id;
       });
 
-      console.log(idx);
 
       // delete object
       this.teams.splice(idx, 1);
@@ -93,10 +92,8 @@ export class TeamsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.teamCounter = JSON.parse(localStorage.getItem('teamCounter'));
+    this.teamCounter = parseInt(localStorage.getItem('teamCounter'), 10);
     this.teams = JSON.parse(localStorage.getItem('teams'));
-
-    console.log('TEAMS COMPONENT');
 
   }
 

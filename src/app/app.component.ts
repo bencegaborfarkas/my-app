@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -7,46 +6,34 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+
     // init localstorage
-    localStorage.setItem("teams", JSON.stringify([
-      {
-        id: 1,
-        name: "team1",
-        playerIds: [1, 2, 3]
-      },
-      {
-        id: 2,
-        name: "team2",
-        playerIds: [1, 3]
-      },
-      {
-        id: 3,
-        name: "team3",
-        playerIds: []
-      }
-    ]));
-    localStorage.setItem("players", JSON.stringify([
-      {
-        id: 1,
-        name: "player1"
-      },
-      {
-        id: 2,
-        name: "player2"
-      },
-      {
-        id: 3,
-        name: "player3"
-      }
-    ]));
-    localStorage.setItem("teamCounter", '4');
-    localStorage.setItem("playerCounter", '4');
-    console.log("APP COMPONENT");
+    let teamCounter: number;
+    let playerCounter: number;
+    teamCounter = parseInt(localStorage.getItem('teamCounter'), 10);
+    playerCounter = parseInt(localStorage.getItem('playerCounter'), 10);
+
+    if (!teamCounter) {
+
+      localStorage.setItem('teamCounter', '0');
+      localStorage.setItem('teams', '[]');
+
+    }
+
+    if (!playerCounter) {
+
+      localStorage.setItem('playerCounter', '0');
+      localStorage.setItem('players', '[]');
+
+    }
+
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-summary',
@@ -12,14 +12,13 @@ export class SummaryComponent implements OnInit {
   summary: any[];
   selectedTeam: any;
 
-  constructor() { }
+  constructor() {
+  }
 
 
-  selectTeam = function(selectedTeam: any){
-
+  selectTeam = function (selectedTeam: any) {
 
     this.selectedTeam = selectedTeam;
-    console.log(this.selectedTeam);
 
   };
 
@@ -28,14 +27,13 @@ export class SummaryComponent implements OnInit {
 
     this.teams = JSON.parse(localStorage.getItem('teams'));
     this.players = JSON.parse(localStorage.getItem('players'));
-    console.log(this.players);
 
     // merge
     this.teams.forEach((team) => {
 
       team.players = [];
       team.playerIds.forEach((id) => {
-        const tmpPlayer = this.players.find( player  => player.id === id.toString() );
+        const tmpPlayer = this.players.find(player => player.id === id);
         team.players.push(tmpPlayer);
       });
 

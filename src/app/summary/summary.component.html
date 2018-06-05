@@ -11,13 +11,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let team of this.summary">
-          <td>index</td>
+        <tr *ngFor="let team of this.summary; let i = index">
+          <td>{{ i + 1 }}</td>
           <td>{{ team.name }}</td>
           <td>{{ team.playerIds.length }}</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPlayersModal" (click)="selectTeam(team)">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPlayersModal"
+                      (click)="selectTeam(team)">
                 View
               </button>
             </div>
@@ -30,7 +31,8 @@
 </div>
 
 
-<div class="modal fade" id="viewPlayersModal" tabindex="-1" role="dialog" aria-labelledby="viewPlayersModal" aria-hidden="true">
+<div class="modal fade" id="viewPlayersModal" tabindex="-1" role="dialog" aria-labelledby="viewPlayersModal"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,8 +50,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let player of this.selectedTeam?.players">
-            <td>index</td>
+          <tr *ngFor="let player of this.selectedTeam?.players; let i = index">
+            <td>{{ i + 1 }}</td>
             <td>{{ player.name }}</td>
           </tr>
           </tbody>
