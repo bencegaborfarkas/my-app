@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 declare var jquery: any;
 declare var $: any;
 
@@ -17,6 +17,8 @@ export class PlayersComponent implements OnInit {
   selectedPlayer: any;
 
   createPlayer = function(playerName: string) {
+
+    console.log(playerName);
 
      // add new player to array
     let playerId: number;
@@ -100,7 +102,7 @@ export class PlayersComponent implements OnInit {
         // if id is found then delete
         let idx: number;
         idx = team.playerIds.indexOf(playerId);
-        if(idx > -1){
+        if (idx > -1) {
           team.playerIds.splice(idx, 1);
         }
 
@@ -132,18 +134,37 @@ export class PlayersComponent implements OnInit {
 
 
 
-  deleteTeam = function(selectedTeam: any) {
+  deletePlayer = function(selectedPlayer: any) {
 
-    if (confirm('Are you sure to delete ' + selectedTeam.name)) {
-      // find idx
-      const idx = this.teams.findIndex((team) => {
-        return team.id === selectedTeam.id;
+    if (confirm('Are you sure to delete ' + selectedPlayer.name)) {
+
+      // delete player from teams
+      let playerId: number;
+      playerId = selectedPlayer.id;
+      this.teams.forEach((team) => {
+
+        // if player is assigned to team, then delete
+        let index: number;
+        index = team.playerIds.indexOf(playerId);
+        if (index > -1){
+          team.playerIds.splice(index, 1);
+        }
+
       });
 
-      console.log(idx);
+      // find players idx
+      const idx = this.players.findIndex((player) => {
+        return player.id === selectedPlayer.id;
+      });
 
-      // delete object
-      this.teams.splice(idx, 1);
+      // delete player
+      this.players.splice(idx, 1);
+
+      // remove players from localstorage
+      localStorage.removeItem('players');
+
+      // add updated players to localstorage
+      localStorage.setItem('players', JSON.stringify(this.players));
 
       // remove teams from localstorage
       localStorage.removeItem('teams');
