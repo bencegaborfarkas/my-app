@@ -10,6 +10,7 @@ declare var $ :any;
 })
 export class PlayersComponent implements OnInit {
 
+  playerCounter: number;
   teams: any[];
   players: any[];
   selectedTeams: any[];
@@ -17,14 +18,17 @@ export class PlayersComponent implements OnInit {
 
   createPlayer = function(playerName: string) {
 
-    //console.log(playerName);
-    //console.log(this.selectedTeams);
-
-
-
-    // add new player to array
+     // add new player to array
+    let playerId: number;
+    playerId = this.playerCounter;
     this.players.push({
+      id: playerId,
       name: playerName
+    });
+
+    // update team(s) with new player
+    this.selectedTeams.forEach((team) => {
+      team.playerIds.push(playerId);
     });
 
     // remove players from localstorage
@@ -33,31 +37,28 @@ export class PlayersComponent implements OnInit {
     // add updated players to localstorage
     localStorage.setItem('players', JSON.stringify(this.players));
 
-    // close modal
-    $('#createplayerModal').modal('hide');
-
-  };
-
-
-  updateTeam = function(selectedTeam: any, teamName: string) {
-
-    // update team name
-    selectedTeam.name = teamName;
-
     // remove teams from localstorage
     localStorage.removeItem('teams');
 
     // add updated teams to localstorage
     localStorage.setItem('teams', JSON.stringify(this.teams));
 
-    // test
-    /* let tmp = JSON.parse(localStorage.getItem('teams'));
-    console.log(tmp);*/
+    // increment player counter
+    this.playerCounter++;
 
-    // close modal
-    $.element('#updateTeamModal').modal('hide');
+    // remove playerCounter from localstorage
+    localStorage.removeItem('playerCounter');
+
+    // add updated playerCounter to localstorage
+    localStorage.setItem('playerCounter', JSON.stringify(this.playerCounter));
+
+    // empty teams array
+    this.selectedTeams.splice(0, this.selectedTeams.length);
 
   };
+
+
+
 
   deleteTeam = function(selectedTeam: any) {
 
@@ -89,6 +90,7 @@ export class PlayersComponent implements OnInit {
 
     this.teams = JSON.parse(localStorage.getItem('teams'));
     this.players = JSON.parse(localStorage.getItem('players'));
+    this.playerCounter = JSON.parse(localStorage.getItem('playerCounter'));
     console.log(this.players);
   }
 

@@ -35,7 +35,7 @@ export class SummaryComponent implements OnInit {
 
       team.players = [];
       team.playerIds.forEach((id) => {
-        let tmpPlayer = this.players.find( player  => player.id === id.toString() );
+        const tmpPlayer = this.players.find( player  => player.id === id.toString() );
         team.players.push(tmpPlayer);
       });
 

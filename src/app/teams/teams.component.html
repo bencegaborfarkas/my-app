@@ -79,22 +79,12 @@
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
-            <label for="selectTeam">Please select a team to update: </label>
-            <select id="selectTeam" name="selectTeam" [(ngModel)]="this.selectedTeam">
-              <option *ngFor="let team of this.teams" [ngValue]="team">{{team.name}}</option>
-            </select>
-          </div>
-
-          <hr>
-
           <form>
             <div class="form-group">
               <label for="teamNameInput">Team new name</label>
               <input type="text" class="form-control" id="teamNameInput" name="teamNameInput" aria-describedby="teamNameInput" placeholder="Enter a new team name" #teamName>
             </div>
           </form>
-
         </form>
       </div>
       <div class="modal-footer">
