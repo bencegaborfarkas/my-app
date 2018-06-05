@@ -20,7 +20,7 @@
           <td>{{ team.name }}</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateTeamModal">
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateTeamModal" (click)="selectTeam(team)">
                 Update
               </button>
               <button type="button" class="btn btn-danger" (click)="deleteTeam(team)">
@@ -72,7 +72,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="aaaa">Create team</h5>
+        <h5 class="modal-title" id="aaaa">Update team</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -89,7 +89,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTeam(this.selectedTeam, teamName.value)">Update</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTeam(teamName.value)">Update</button>
       </div>
     </div>
   </div>

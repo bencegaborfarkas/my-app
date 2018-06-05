@@ -13,6 +13,7 @@ export class TeamsComponent implements OnInit {
   teams: any[];
   selectedTeam: any;
 
+
   createTeam = function(teamName: string) {
 
     // add new team to array
@@ -39,21 +40,29 @@ export class TeamsComponent implements OnInit {
 
   };
 
+  selectTeam = function(selectedTeam: any){
 
-  updateTeam = function(selectedTeam: any, teamName: string) {
 
-    // update team name
-    selectedTeam.name = teamName;
+    this.selectedTeam = selectedTeam;
+    console.log(this.selectedTeam);
 
-    // remove teams from localstorage
-    localStorage.removeItem('teams');
+  };
 
-    // add updated teams to localstorage
-    localStorage.setItem('teams', JSON.stringify(this.teams));
+  updateTeam = function(teamName: string) {
 
-    // test
-    /* let tmp = JSON.parse(localStorage.getItem('teams'));
-    console.log(tmp);*/
+    if (confirm('Are you sure to update ' + this.selectedTeam.name)) {
+
+      // update team name
+      this.selectedTeam.name = teamName;
+
+      // remove teams from localstorage
+      localStorage.removeItem('teams');
+
+      // add updated teams to localstorage
+      localStorage.setItem('teams', JSON.stringify(this.teams));
+
+    }
+
 
   };
 
